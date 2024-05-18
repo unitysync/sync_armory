@@ -1,7 +1,6 @@
 Locales = {
     ['en'] = {
         ['armory_name'] = 'Police Armory',
-        ['swat_armory_name'] = 'SWAT Armory',
         ['add_weapon'] = 'Add Weapon',
         ['remove_weapon'] = 'Remove Weapon',
         ['open_armory'] = 'Open Armory',

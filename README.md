@@ -4,6 +4,7 @@ Advanced armory script using ox_lib
 # Dependencies
 - es_extended (ESX)
 - ox_inventory
+- ox_lib
 
 # Preview
 ![Main Page](https://cdn.pribilovic.net/u/4d910e70-8d95-4774-9dc5-1c57eda34751.png)

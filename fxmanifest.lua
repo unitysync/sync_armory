@@ -3,24 +3,20 @@ game 'gta5'
 
 author 'sync'
 description 'Armory script using ox_lib'
-version '1.0.0'
+version '1.0.1'
 
 lua54 'yes'
 
-client_scripts {
-    'client/*.lua',
-}
+client_script 'client.lua'
+server_scripts 'server.lua'
+
 
 shared_scripts {
     '@ox_lib/init.lua',
-    '@es_extended/imports.lua',
     'config.lua',
     'locales.lua'
 }
 
-server_scripts {
-    'server/*.lua'
-}
 dependencies {
     'ox_lib',
     'ox_inventory',
