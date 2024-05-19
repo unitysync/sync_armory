@@ -133,6 +133,7 @@ end
 
 local function init()
     for type, location in pairs(Config.Locations) do
+        local main = mainOptions[type]
         for _, v in pairs(location) do
             -- Register Target for Each Location
             exports.ox_target:addBoxZone({
@@ -152,21 +153,21 @@ local function init()
         end
         -- Only added to main menu if it exists
         if Config.Items[type] then
-            mainOptions[type][#mainOptions[type]+1] = {
+            main[#main+1] = {
                 title = 'Shop',
                 icon = 'basket-shopping',
                 menu = 'sync_armory:'..type..':items'
             } 
         end
         if Config.Weapons[type] then
-            mainOptions[type][#mainOptions[type]+1] = {
+            main[#main+1] = {
                 title = 'Weapons',
                 icon = 'gun',
                 menu = 'sync_armory:'..type..':weapons'
             }
         end
         if Config.Armor[type] then
-            mainOptions[type][#mainOptions[type]+1] = {
+            main[#main+1] = {
                 title = 'Armor',
                 icon = 'vest',
                 menu = 'sync_armory:'..type..':armor'
@@ -175,7 +176,7 @@ local function init()
         lib.registerContext({
             id = 'sync_armory:'..type,
             title = Lang('armory_name'),
-            options = mainOptions
+            options = main
         })
     end
     for type, weapons in pairs(Config.Weapons) do
@@ -195,8 +196,9 @@ local function init()
         })
     end
     for type, items in pairs(Config.Items) do
+        local shop = shopOptions[type]
         for i = 1, #items do
-            shopOptions[type][#shopOptions[type] + 1] = {
+            shop[#shop + 1] = {
                 title = items[i].label,
                 onSelect = getItem,
                 args = { item = items[i].item },
@@ -207,52 +209,32 @@ local function init()
             id = 'sync_armory:' .. type .. ':items',
             menu = 'sync_armory:' .. type,
             title = Lang('armory_name'),
-            options = shopOptions[type],
+            options = shop,
         })
     end
     for type, option in pairs(Config.Armor) do
+        local armor = armorOptions[type]
         for _, v in pairs(option) do
-            armorOptions[type][#armorOptions[type] + 1] = {
+            armor[#armor + 1] = {
                 title = v.label,
                 onSelect = setArmor,
-                args = { amount = v.armor }
+                args = { amount = v.armor },
+                icon = v.icon or 'vest'
             }
         end
+        armor[#armor + 1] = {
+            title = 'Remove Vest',
+            onSelect = setArmor,
+            args = { amount = 0 },
+            icon = 'vest'
+        }
         lib.registerContext({
             id = 'sync_armory:' .. type .. ':armor',
             menu = 'sync_armory:' .. type,
             title = Lang('armory_name'),
-            options = {
-                {
-                    title = option.label,
-                    onSelect = setArmor,
-                    args = { amount = option.amount }
-                },
-                {
-                    title = 'Remove Vest',
-                    onSelect = setArmor,
-                    args = { amount = option.amount }
-                },
-            },
+            options = armor
         })
     end
-    lib.registerContext({
-        id = 'sync_armory:armor',
-        menu = 'sync_armory:main',
-        title = Lang('armory_name'),
-        options = {
-            {
-                title = 'Load Bearing Vest',
-                event = 'sync_armory:setArmor',
-                args = { type = 1 }
-            },
-            {
-                title = 'Remove Vest',
-                event = 'sync_armory:setArmor',
-                args = { type = 'remove' }
-            },
-        },
-    })
 end
 
 init()
