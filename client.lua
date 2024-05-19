@@ -1,4 +1,3 @@
---@diagnostic disable: undefined-global
 local mainOptions = {}
 local weaponOptions = {}
 local shopOptions = {}
