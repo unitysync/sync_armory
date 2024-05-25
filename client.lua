@@ -133,7 +133,7 @@ end
 
 local function init()
     for type, location in pairs(Config.Locations) do
-        local mainOptions[type] = {}
+        mainOptions[type] = {}
         local main = mainOptions[type]
         for _, v in pairs(location) do
             -- Register Target for Each Location
@@ -182,9 +182,9 @@ local function init()
     end
     for type, weapons in pairs(Config.Weapons) do
         for _, v in pairs(weapons) do
-            local weaponOptions[type] = {}
-            local weapons = weaponOptions[type]
-            weapons[#weapons + 1] = {
+            weaponOptions[type] = {}
+            local weapon = weaponOptions[type]
+            weapon[#weapon + 1] = {
                 title = v.label,
                 args = { item = v.item, components = v.components },
                 onSelect = getWeapon,
@@ -199,7 +199,7 @@ local function init()
         })
     end
     for type, items in pairs(Config.Items) do
-        local shopOptions[type] = {}
+        shopOptions[type] = {}
         local shop = shopOptions[type]
         for i = 1, #items do
             shop[#shop + 1] = {
@@ -217,7 +217,7 @@ local function init()
         })
     end
     for type, option in pairs(Config.Armor) do
-        local armorOptions[type] = {}
+        armorOptions[type] = {}
         local armor = armorOptions[type]
         for _, v in pairs(option) do
             armor[#armor + 1] = {
