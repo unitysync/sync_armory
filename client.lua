@@ -16,7 +16,7 @@ end
 
 ---@param type string
 local function openArmory(type)
-    if Config.Password[type] then
+    if Config.Passwords[type] then
         local input = lib.inputDialog(Lang('armory_name'), {
             {
                 type = 'input',
