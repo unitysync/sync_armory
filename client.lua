@@ -48,7 +48,7 @@ local function getWeapon(data)
                 description = 'All actions in the armory are logged. Ensure you are authorised to do this.',
                 icon = 'plus',
                 onSelect = function()
-                    TriggerServerEvent('sync_armory:server:getWeapons', data)
+                    TriggerServerEvent('sync_armory:getWeapons', data)
                     lib.showContext(('sync_armory:%s:weapons'):format(data.type))
                 end
             },
@@ -56,7 +56,7 @@ local function getWeapon(data)
                 title = 'Remove Weapon',
                 icon = 'minus',
                 onSelect = function()
-                    TriggerServerEvent('sync_armory:server:removeWeapons', data)
+                    TriggerServerEvent('sync_armory:removeWeapons', data)
                 end
             }
         }
@@ -75,7 +75,7 @@ local function getItem(data)
     })
     if not input then return end
     local amount = tonumber(input[1])
-    TriggerServerEvent('sync_armory:server:getItems', data.item, amount)
+    TriggerServerEvent('sync_armory:getItems', data.item, amount)
     lib.showContext(('sync_armory:%s:items'):format(data.type))
 end
 

@@ -38,7 +38,7 @@ for type, password in pairs(Config.Passwords) do
 end
 
 
-RegisterNetEvent('sync_armory:server:getWeapons', function(data)
+RegisterNetEvent('sync_armory:getWeapons', function(data)
     local item, components = data.item, data.components
     local xPlayer = ESX.GetPlayerFromId(source)
     local canCarryItem = inv:CanCarryItem(source, item, 1)
@@ -64,7 +64,7 @@ RegisterNetEvent('sync_armory:removeWeapons', function(item)
     end
 end)
 
-RegisterNetEvent('sync_armory:server:getItems', function(item, count)
+RegisterNetEvent('sync_armory:getItems', function(item, count)
     local xPlayer = ESX.GetPlayerFromId(source)
     local canCarryItem = inv:CanCarryItem(source, item, count)
     if xPlayer.getJob().name == 'police' and canCarryItem then
