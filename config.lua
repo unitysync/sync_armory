@@ -40,12 +40,13 @@ Config.Armor = {
 Config.Passwords = {
     ['swat'] = 'CHANGE_ME', -- SWAT PASSWORD
 }
-Config.TargetSize = vector3(2, 2, 2)
+
+Config.UseTarget = true -- Set to false to use markers
 Config.Locations = {
     ['main'] = {
-        { coords = vec3(437.440, -983.365, 34.087), icon = 'fa-solid fa-gun', job = 'police', label = 'Open Armory' }, -- MRPD MAIN | CHANGE AND ADD MORE LOCATIONS
+        { coords = vec3(437.440, -983.365, 34.087), icon = 'gun', job = 'police', label = 'Open Armory' }, -- MRPD MAIN | CHANGE AND ADD MORE LOCATIONS
     },
     ['swat'] = {
-        { coords = vec3(441.991, -988.187, 34.298), icon = 'fa-solid fa-person-rifle', job = 'police', label = 'Open SWAT Armory'}, -- MRPD SWAT | CHANGE AND ADD MORE LOCATIONS
+        { coords = vec3(441.991, -988.187, 34.298), icon = 'person-rifle', job = 'police', label = 'Open SWAT Armory'}, -- MRPD SWAT | CHANGE AND ADD MORE LOCATIONS
     },
 }
