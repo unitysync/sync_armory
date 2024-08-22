@@ -75,8 +75,7 @@ local function getItem(data)
         }
     })
     if not input then return end
-    local amount = tonumber(input[1])
-    TriggerServerEvent('sync_armory:getItems', data.item, amount)
+    TriggerServerEvent('sync_armory:getItems', data.item, input[1])
     lib.showContext(('sync_armory:%s:items'):format(data.type))
 end
 
