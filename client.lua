@@ -57,6 +57,7 @@ local function getWeapon(data)
                 icon = 'minus',
                 onSelect = function()
                     TriggerServerEvent('sync_armory:removeWeapons', data)
+                    lib.showContext(('sync_armory:%s:weapons'):format(data.type))
                 end
             }
         }
