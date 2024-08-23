@@ -8,7 +8,10 @@ version '1.0.3'
 lua54 'yes'
 
 client_script 'client.lua'
-server_scripts 'server.lua'
+server_scripts {
+    'server.lua',
+    '@oxmysql/lib/MySQL.lua'
+}
 
 
 shared_scripts {
@@ -20,6 +23,6 @@ shared_scripts {
 dependencies {
     'ox_lib',
     'ox_inventory',
+    'oxmysql',
     'es_extended'
 }
-
