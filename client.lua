@@ -210,6 +210,7 @@ local function init()
                 menu = ('sync_armory:%s:armor'):format(type)
             }
         end
+        --[[
         if Config.Loadouts then
             main[#main + 1] = {
                 title = 'Loadouts',
@@ -283,6 +284,7 @@ local function init()
                 end,
             }
         end
+        ]]
         lib.registerContext({
             id = ('sync_armory:%s'):format(type),
             title = Lang('armory_name'),

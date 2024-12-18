@@ -127,7 +127,7 @@ RegisterNetEvent('sync_armory:registerLoadout', function(data)
         ['@name'] = data.name
     })
 end)
-
+--[[ ! WIP ! has not been tested. likely non-functional
 RegisterNetEvent('sync_armory:getLoadout', function(loadoutId)
     local xPlayer = ESX.GetPlayerFromId(source)
     local response = MySQL.query.await('SELECT loadout FROM armory WHERE (loadoutId = @loadoutId AND owner = @owner)', {
@@ -155,5 +155,4 @@ lib.callback.register('sync_armory:fetchLoadouts', function(source)
     })
     return response
 end)
-
-
+]]
