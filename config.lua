@@ -40,7 +40,6 @@ Config.Armor = {
 Config.Passwords = {
     ['swat'] = 'CHANGE_ME', -- SWAT PASSWORD
 }
-Config.Loadouts = true -- Enable Loadouts
 Config.UseTarget = true -- Set to false to use markers
 Config.Locations = {
     ['main'] = {

@@ -1,19 +1,4 @@
 lib.versionCheck('unitysync/sync_armory')
-CreateThread(function()
-    local success, _ = pcall(MySQL.scalar.await, 'SELECT 1 FROM armory')
-    if not success then
-        MySQL.query([[
-        CREATE TABLE `armory`(
-            `loadoutId` AUTOINCREMENT NOT NULL,
-            `owner` TINYTEXT NOT NULL,
-            `loadout` TEXT NOT NULL,
-            `name` TINYTEXT NOT NULL,
-        )
-        primary key (`loadoutId`)
-        ]])
-    end
-end)
-
 local ESX = exports.es_extended:getSharedObject()
 local inv = exports.ox_inventory
 local webhook = 'CHANGE_ME' -- Set to false to disable webhook.
@@ -112,47 +97,3 @@ RegisterNetEvent('sync_armory:getItems', function(item, count)
         end
     end
 end)
-
-
-RegisterNetEvent('sync_armory:registerLoadout', function(data)
-    if not data or type(data) ~= 'table' then return end
-    local xPlayer = ESX.GetPlayerFromId(source)
-    if not xPlayer?.getJob().name == 'police' then return end
-    
-    -- Todo: Add validation for adding loadout
-
-    MySQL.insert.await('INSERT INTO armory (owner, loadout, name) VALUES (@owner, @loadout)', {
-        ['@owner'] = xPlayer.identifier,
-        ['@loadout'] = json.encode(data.weapons),
-        ['@name'] = data.name
-    })
-end)
---[[ ! WIP ! has not been tested. likely non-functional
-RegisterNetEvent('sync_armory:getLoadout', function(loadoutId)
-    local xPlayer = ESX.GetPlayerFromId(source)
-    local response = MySQL.query.await('SELECT loadout FROM armory WHERE (loadoutId = @loadoutId AND owner = @owner)', {
-        ['@loadoutId'] = loadoutId,
-        ['@owner'] = xPlayer.identifier
-    })
-    if response[1] then
-        for _, v in pairs(response[1]) do
-            for __, weapons in pairs(Config.Weapons) do
-                for ___, w in pairs(weapons) do
-                    if v == w.item then
-                        inv:AddItem(source, v, 1, {components = w.components})
-                    end
-                end
-            end
-        end
-    end
-end)
-
-lib.callback.register('sync_armory:fetchLoadouts', function(source)
-    local xPlayer = ESX.GetPlayerFromId(source)
-    if not xPlayer?.getJob().name == 'police' then return end
-    local response = MySQL.query.await('SELECT FROM armory WHERE owner = @owner', {
-        ['@owner'] = xPlayer.identifier
-    })
-    return response
-end)
-]]
