@@ -3,7 +3,7 @@ game 'gta5'
 
 author 'sync'
 description 'Armory script using ox_lib'
-version '1.1.1'
+version '1.1.2'
 
 lua54 'yes'
 
